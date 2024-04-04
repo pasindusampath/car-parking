@@ -7,21 +7,25 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="439.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.sub.UserManageForm">
+<AnchorPane prefHeight="439.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.UserManageFormController">
    <children>
-      <TableView layoutX="234.0" layoutY="29.0" prefHeight="397.0" prefWidth="385.0">
+      <TableView fx:id="tblUsers" layoutX="234.0" layoutY="29.0" prefHeight="397.0" prefWidth="385.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="colUserName" prefWidth="121.0" text="User Name" />
+          <TableColumn fx:id="colEmail" prefWidth="143.0" text="Email" />
+            <TableColumn fx:id="colType" prefWidth="120.0" text="Type" />
         </columns>
       </TableView>
-      <TextField layoutX="39.0" layoutY="99.0" promptText="Name" />
-      <TextField layoutX="39.0" layoutY="137.0" promptText="Email" />
-      <TextField layoutX="39.0" layoutY="179.0" promptText="Password" />
-      <ComboBox layoutX="39.0" layoutY="220.0" prefWidth="150.0" promptText="Select Type" />
-      <Button layoutX="39.0" layoutY="296.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Save" />
-      <Button layoutX="128.0" layoutY="296.0" mnemonicParsing="false" text="Updater" />
-      <Button layoutX="39.0" layoutY="332.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Delete" />
-      <Button layoutX="128.0" layoutY="332.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Clear" />
+      <TextField fx:id="txtUserName" layoutX="39.0" layoutY="99.0" promptText="Name" />
+      <TextField fx:id="txtEmail" layoutX="39.0" layoutY="137.0" promptText="Email" />
+      <TextField fx:id="txtPassword" layoutX="39.0" layoutY="173.0" promptText="Password" />
+      <ComboBox fx:id="cmbUserType" layoutX="39.0" layoutY="246.0" prefWidth="150.0" promptText="Select Type" />
+      <Button layoutX="39.0" layoutY="296.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="25.0" prefWidth="59.0" text="Save" />
+      <Button layoutX="128.0" layoutY="296.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update" />
+      <Button layoutX="39.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="25.0" prefWidth="59.0" text="Delete" />
+      <Button layoutX="128.0" layoutY="332.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="25.0" prefWidth="59.0" text="Clear" />
+      <TextField fx:id="txtUserId" layoutX="39.0" layoutY="63.0" prefHeight="25.0" onAction="#txtUserIdOnAction" prefWidth="125.0" promptText="User Id" />
+      <Button layoutX="171.0" layoutY="63.0" mnemonicParsing="false" onAction="#btnRefreshIdOnAction" prefHeight="25.0" prefWidth="19.0" text="R" />
+      <TextField fx:id="txtNic" layoutX="39.0" layoutY="207.0" promptText="Nic" />
    </children>
 </AnchorPane>
