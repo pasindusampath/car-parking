@@ -1,7 +1,9 @@
 package com.example.dao;
 
 import com.example.dto.VehicleDTO;
+import com.example.entity.custom.Vehicle;
 import com.example.util.DBConnection;
+import com.example.util.VehicleType;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,13 +17,15 @@ public class VehicleDAO {
         this.connection = DBConnection.getInstance().getConnection();
     }
 
-    public boolean createVehicle(VehicleDTO vehicleDTO) {
+    public boolean createVehicle(Vehicle vehicleDTO) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "INSERT INTO vehicle (brand, u_id) VALUES (?, ?)"
+                    "INSERT INTO vehicle (brand, u_id,type ) VALUES (?, ?,?)"
             );
+            System.out.println(vehicleDTO.getVehicleType().name());
             preparedStatement.setString(1, vehicleDTO.getBrand());
             preparedStatement.setString(2, vehicleDTO.getUserId());
+            preparedStatement.setString(3, vehicleDTO.getVehicleType().name());
 
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
@@ -31,8 +35,8 @@ public class VehicleDAO {
         }
     }
 
-    public List<VehicleDTO> getAllVehicles() {
-        List<VehicleDTO> vehicles = new ArrayList<>();
+    public List<Vehicle> getAllVehicles() {
+        List<Vehicle> vehicles = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM vehicle");
@@ -40,7 +44,8 @@ public class VehicleDAO {
                 int id = resultSet.getInt("id");
                 String brand = resultSet.getString("brand");
                 String userId = resultSet.getString("u_id");
-                vehicles.add(new VehicleDTO(id, brand, userId));
+                VehicleType vehicleType = VehicleType.valueOf(resultSet.getString("type"));
+                vehicles.add(new Vehicle(id, brand, userId,vehicleType));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -48,8 +53,8 @@ public class VehicleDAO {
         return vehicles;
     }
 
-    public VehicleDTO getVehicleById(int vehicleId) {
-        VehicleDTO vehicle = null;
+    public Vehicle getVehicleById(int vehicleId) {
+        Vehicle vehicle = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "SELECT * FROM vehicle WHERE id = ?"
@@ -59,7 +64,8 @@ public class VehicleDAO {
             if (resultSet.next()) {
                 String brand = resultSet.getString("brand");
                 String userId = resultSet.getString("u_id");
-                vehicle = new VehicleDTO(vehicleId, brand, userId);
+                VehicleType vehicleType = VehicleType.valueOf(resultSet.getString("type"));
+                vehicle = new Vehicle(vehicleId, brand, userId,vehicleType);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -67,14 +73,36 @@ public class VehicleDAO {
         return vehicle;
     }
 
-    public boolean updateVehicle(VehicleDTO vehicleDTO) {
+    public Vehicle getVehicleByUserId(String uid) {
+        Vehicle vehicle = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
-                    "UPDATE vehicle SET brand = ?, u_id = ? WHERE id = ?"
+                    "SELECT * FROM vehicle WHERE u_id = ?"
+            );
+            preparedStatement.setString(1, uid);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int vehicleId = resultSet.getInt("id");
+                String brand = resultSet.getString("brand");
+                String userId = resultSet.getString("u_id");
+                VehicleType vehicleType = VehicleType.valueOf(resultSet.getString("type"));
+                vehicle = new Vehicle(vehicleId, brand, userId,vehicleType);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vehicle;
+    }
+
+    public boolean updateVehicle(Vehicle vehicleDTO) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE vehicle SET brand = ?, u_id = ? , type = ? WHERE id = ?"
             );
             preparedStatement.setString(1, vehicleDTO.getBrand());
             preparedStatement.setString(2, vehicleDTO.getUserId());
-            preparedStatement.setInt(3, vehicleDTO.getId());
+            preparedStatement.setString(3, vehicleDTO.getVehicleType().name());
+            preparedStatement.setInt(4, vehicleDTO.getId());
 
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;

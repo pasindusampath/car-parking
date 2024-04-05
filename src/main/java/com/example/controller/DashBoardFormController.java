@@ -16,10 +16,16 @@ public class DashBoardFormController {
         navPane.getChildren().add(load);
     }
 
-    public void btnManageUserOnAction(ActionEvent actionEvent) {
+    public void btnManageUserOnAction(ActionEvent actionEvent) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("/view/sub/UserManageForm.fxml"));
+        navPane.getChildren().clear();
+        navPane.getChildren().add(load);
     }
 
-    public void btnManageVehiclesOnAction(ActionEvent actionEvent) {
+    public void btnManageVehiclesOnAction(ActionEvent actionEvent) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("/view/sub/VehicleManageForm.fxml"));
+        navPane.getChildren().clear();
+        navPane.getChildren().add(load);
     }
 
     public void manageParkingSlotsOnAction(ActionEvent actionEvent) {
