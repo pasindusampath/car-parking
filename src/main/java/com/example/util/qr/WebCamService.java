@@ -55,6 +55,7 @@ public class WebCamService extends Service<Image> {
                                 String s = QRDecoder.decodeQRCode(bimg);
                                 if(s!=null){
                                     updateMessage(s);
+                                    updateMessage("remove");
                                 }else{
                                     try {
                                         updateProgress(20,100);

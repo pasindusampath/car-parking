@@ -39,22 +39,10 @@ public class QrScannerFormController {
         prograss.progressProperty().bind(service.progressProperty());
 
         service.messageProperty().addListener((a,old,c)->{
-            if(c!=null){
-                if(old==null){
-                    String studentDetail = c;
-                    if(studentDetail!=null){
-                        lblName.setText(studentDetail);
-                    }
-                    ob.qrIdRequestAction(c);
-                }else
-                if(!old.equals(c)) {
-                    String studentDetail = c;
-                    if (studentDetail != null) {
-                        lblName.setText(studentDetail);
-                    }
-                    //ob.qrIdRequestAction(c);
-                }
-            }
+            System.out.println(c);
+            if(c.equals("remove"))
+            ob.qrIdRequestAction(old);
+            else ob.qrIdRequestAction(c);
         });
     }
 

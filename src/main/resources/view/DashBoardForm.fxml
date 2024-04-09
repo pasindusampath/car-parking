@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane prefHeight="486.0" prefWidth="833.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.DashBoardFormController">
    <children>
-      <Button layoutX="22.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnManageUserOnAction" prefHeight="25.0" prefWidth="131.0" text="Manage Users" />
-      <Button layoutX="22.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnManageVehiclesOnAction" prefHeight="25.0" prefWidth="131.0" text="Manage Vehicles" />
-      <Button layoutX="22.0" layoutY="350.0" mnemonicParsing="false" onAction="#manageParkingSlotsOnAction" prefHeight="25.0" prefWidth="131.0" text="Manage Parking Slots" />
-      <AnchorPane fx:id="navPane" layoutX="169.0" layoutY="24.0" prefHeight="439.0" prefWidth="637.0" />
-      <Button layoutX="22.0" layoutY="406.0" mnemonicParsing="false" onAction="#manageParkingOnAction" prefHeight="25.0" prefWidth="131.0" text="Manage Parking" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6d73789f" height="486.0" stroke="BLACK" strokeType="INSIDE" width="833.0" />
+      <Button layoutX="26.0" layoutY="188.0" mnemonicParsing="false" onAction="#btnManageUserOnAction" prefHeight="25.0" prefWidth="131.0" text="Manage Users" />
+      <Button layoutX="26.0" layoutY="243.0" mnemonicParsing="false" onAction="#btnManageVehiclesOnAction" prefHeight="25.0" prefWidth="131.0" text="Manage Vehicles" />
+      <Button layoutX="26.0" layoutY="295.0" mnemonicParsing="false" onAction="#manageParkingSlotsOnAction" prefHeight="25.0" prefWidth="131.0" text="Manage Parking Slots" />
+      <AnchorPane fx:id="navPane" layoutX="182.0" layoutY="24.0" prefHeight="439.0" prefWidth="637.0" />
+      <Button layoutX="26.0" layoutY="351.0" mnemonicParsing="false" onAction="#manageParkingOnAction" prefHeight="25.0" prefWidth="131.0" text="Manage Parking" />
+      <ImageView fitHeight="130.0" fitWidth="139.0" layoutX="22.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/41006-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="166.0" layoutY="3.0" orientation="VERTICAL" prefHeight="478.0" prefWidth="6.0" />
    </children>
 </AnchorPane>

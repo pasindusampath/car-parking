@@ -21,7 +21,7 @@ public class VehicleManageFormController {
     public void initialize(){
         service = new VehicleService();
 
-        cmbVehicleType.getItems().addAll(VehicleType.ELECTRIC,VehicleType.NORMAL);
+        cmbVehicleType.getItems().addAll(VehicleType.values());
 
     }
 

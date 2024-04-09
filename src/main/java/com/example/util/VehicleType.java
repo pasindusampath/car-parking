@@ -1,5 +1,5 @@
 package com.example.util;
 
 public enum VehicleType {
-    ELECTRIC,NORMAL
+    ELECTRIC,REGULAR,HANDI_CAP
 }

@@ -1,6 +1,8 @@
 package com.example.dao;
 
 import com.example.dto.SlotVehicleDTO;
+import com.example.entity.custom.SlotVehicle;
+import com.example.entity.custom.Slots;
 import com.example.util.DBConnection;
 import com.example.util.SlotVehicleStatus;
 
@@ -104,6 +106,47 @@ public class SlotVehicleDAO {
             );
             preparedStatement.setInt(1, slotVehicleId);
 
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public SlotVehicle isUserAlreadyParkedVehicle(String userId){
+        Slots slot = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT sv.id , sv.v_id , sv.s_id , sv.day , sv.r_time , sv.status FROM user u join vehicle v on u.id = v.u_id join slot_vehicle sv on v.id = sv.v_id where sv.status = 'Y' and u.id = ?"
+            );
+            preparedStatement.setString(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                int v_id = resultSet.getInt(2);
+                int s_id = resultSet.getInt(3);
+                Date day = resultSet.getDate(4);
+                Time time = resultSet.getTime(5);
+                SlotVehicleStatus status = SlotVehicleStatus.valueOf(resultSet.getString(6));
+                return new SlotVehicle(id,v_id,s_id,day,time,status);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public boolean updateStatus(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "UPDATE slot_vehicle SET status = ? WHERE id = ?"
+            );
+           preparedStatement.setString(1,SlotVehicleStatus.N.name());
+           preparedStatement.setInt(2,id);
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {

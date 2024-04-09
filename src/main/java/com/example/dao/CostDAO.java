@@ -1,6 +1,7 @@
 package com.example.dao;
 
 import com.example.dto.CostDTO;
+import com.example.entity.custom.Cost;
 import com.example.util.DBConnection;
 
 import java.sql.*;
@@ -15,7 +16,7 @@ public class CostDAO {
         this.connection = DBConnection.getInstance().getConnection();
     }
 
-    public boolean createCost(CostDTO costDTO) {
+    public boolean createCost(Cost costDTO) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "INSERT INTO cost (id, amount) VALUES (?, ?)"
@@ -31,15 +32,15 @@ public class CostDAO {
         }
     }
 
-    public List<CostDTO> getAllCosts() {
-        List<CostDTO> costs = new ArrayList<>();
+    public List<Cost> getAllCosts() {
+        List<Cost> costs = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM cost");
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 double amount = resultSet.getDouble("amount");
-                costs.add(new CostDTO(id, amount));
+                costs.add(new Cost(id, amount));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,7 +66,7 @@ public class CostDAO {
         return cost;
     }
 
-    public boolean updateCost(CostDTO costDTO) {
+    public boolean updateCost(Cost costDTO) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "UPDATE cost SET amount = ? WHERE id = ?"

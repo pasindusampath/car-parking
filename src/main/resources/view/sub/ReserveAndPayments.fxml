@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="439.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.ReservationAndParking">
+   <children>
+      <TextField fx:id="txtUserId" layoutX="52.0" layoutY="31.0" promptText="User Id" />
+      <TextField fx:id="txtUserName" editable="false" layoutX="52.0" layoutY="73.0" promptText="User Name" />
+      <TextField fx:id="txtVehicleName" editable="false" layoutX="52.0" layoutY="110.0" promptText="Vehicle Brand" />
+      <TextField fx:id="txtVehicleNumber" editable="false" layoutX="52.0" layoutY="152.0" promptText="Vehicle number" />
+      <TextField fx:id="txtSlotNumberForReserve" editable="false" layoutX="52.0" layoutY="228.0" promptText="Slot Number For Reserve" />
+      <Button layoutX="74.0" layoutY="313.0" mnemonicParsing="false" onAction="#btnReserveOnAction" prefHeight="25.0" prefWidth="105.0" text="Reserve " />
+      <Button layoutX="74.0" layoutY="354.0" mnemonicParsing="false" onAction="#btnPaymentOnAction" prefHeight="25.0" prefWidth="105.0" text="Payment" />
+      <TextField fx:id="txtPayment" editable="false" layoutX="52.0" layoutY="267.0" promptText="Payment" />
+      <AnchorPane fx:id="qrPane" layoutX="234.0" layoutY="56.0" prefHeight="347.0" prefWidth="386.0" />
+      <ComboBox fx:id="cmbVehicleType" layoutX="52.0" layoutY="189.0" prefWidth="150.0" promptText="Vehicle Type" />
+   </children>
+</AnchorPane>

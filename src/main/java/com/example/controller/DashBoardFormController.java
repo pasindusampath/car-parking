@@ -28,10 +28,15 @@ public class DashBoardFormController {
         navPane.getChildren().add(load);
     }
 
-    public void manageParkingSlotsOnAction(ActionEvent actionEvent) {
+    public void manageParkingSlotsOnAction(ActionEvent actionEvent) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("/view/sub/ParkingSlotManageForm.fxml"));
+        navPane.getChildren().clear();
+        navPane.getChildren().add(load);
     }
 
-    public void manageParkingOnAction(ActionEvent actionEvent) {
-
+    public void manageParkingOnAction(ActionEvent actionEvent) throws IOException {
+        Parent load = FXMLLoader.load(getClass().getResource("/view/sub/ReserveAndPayments.fxml"));
+        navPane.getChildren().clear();
+        navPane.getChildren().add(load);
     }
 }
